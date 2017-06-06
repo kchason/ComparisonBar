@@ -13,11 +13,11 @@ Allows argument passing during initialization or with `data-*` elements. The gra
 `$('.comparisonbar').comparisonbar();`
 
 #### Parameter Initialization
-```$('.comparisonbar').comparisonbar({
-  barHeight: 30,
-  barFillColor: #cccccc,
-  valueFillColor: #333333
-});```
+    $('.comparisonbar').comparisonbar({
+    barHeight: 30,
+    barFillColor: #cccccc,
+    valueFillColor: #333333
+    });
 
 #### Inline Arguments
 
