@@ -35,14 +35,14 @@ The above screenshots are generated from the below initialization.
 * minMaxLineColor - The color code (RGB or Hex) for the min and max lines.
 * minMaxTextColor - The color code (RGB or Hex) for the min and max labels.
 * markers 
- * position - 'top' or 'bottom'
- * color - The color code (RGB or Hex) for the triangular marker.
- * textColor - The color code (RGB or Hex) for the marker label.
- * label - The text for the label.
- * value - The integer value at which to center the marker.
+    * position - 'top' or 'bottom'
+    * color - The color code (RGB or Hex) for the triangular marker.
+    * textColor - The color code (RGB or Hex) for the marker label.
+    * label - The text for the label.
+    * value - The integer value at which to center the marker.
 * zones
- * position - 'top' or 'bottom'
- * color - The color code (RGB or Hex) for the zone line.
- * min - The integer value at which the zone begins.
- * max - The integer value at which the zone ends.
- * weight - The whole number value in pixels for the zone line weight.
+    * position - 'top' or 'bottom'
+    * color - The color code (RGB or Hex) for the zone line.
+    * min - The integer value at which the zone begins.
+    * max - The integer value at which the zone ends.
+    * weight - The whole number value in pixels for the zone line weight.
