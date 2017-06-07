@@ -13,13 +13,58 @@ Allows argument passing during initialization or with `data-*` elements. The gra
 `$('.comparisonbar').comparisonbar();`
 
 #### Parameter Initialization
-`$('.comparisonbar').comparisonbar({ barHeight: 30, barFillColor: #cccccc, valueFillColor: #333333});`
+    $('.comparisonbar').comparisonbar({ 
+        barHeight: 30, 
+        barFillColor: #cccccc, 
+        valueFillColor: #333333
+    });
 
 #### Inline Arguments
 
 The above screenshots are generated from the below initialization.
 
-    <div class="comparisonbar" data-value="9.6" data-min-value="0" data-max-value="35" data-markers='[{"position": "top", "color": "rgb(211, 134, 10)", "textColor": "rgb(211, 134, 10)", "value": 8.6, "label": "Average"}, {"position": "bottom", "color": "#02562c", "textColor":"#02562c", "value": 5, "label": "Goal"}]' data-zones='[{"min":0, "max":5, "color":"#31d009", "weight":"3"},{"min":5, "max":10, "color":"#a2d6b0", "weight":"3"},{"min":10, "max":20, "color":"#e09199", "weight":"3"},{"min":20, "max":35, "color":"#ff0000", "weight":"3"}]'></div>
+    <div class="comparisonbar" 
+        data-value="9.6" 
+        data-min-value="0" 
+        data-max-value="35" 
+        data-markers='[
+            {
+                "position": "top", 
+                "color": "rgb(211, 134, 10)", 
+                "textColor": "rgb(211, 134, 10)", 
+                "value": 8.6, 
+                "label": "Average"
+            }, {
+                "position": "bottom", 
+                "color": "#02562c", 
+                "textColor":"#02562c", 
+                "value": 5, 
+                "label": "Goal"}
+        ]' 
+        data-zones='[
+            {
+                "min":0, 
+                "max":5, 
+                "color":"#31d009", 
+                "weight":"3"
+            },{
+                "min":5, 
+                "max":10, 
+                "color":"#a2d6b0", 
+                "weight":"3"
+            },{
+                "min":10, 
+                "max":20, 
+                "color":"#e09199", 
+                "weight":"3"
+            },{
+                "min":20, 
+                "max":35, 
+                "color":"#ff0000", 
+                "weight":"3"
+            }
+        ]'>
+    </div>
 
 #### Resizing 
 To have the SVG resize when the window changes, use the following segment.
