@@ -188,54 +188,70 @@
 					value: 0
 				}, value);
 
-				//Create markers
-				//Identify center line
-				var markerPercentage = ((markerSettings['value']) / (settings.maxValue - settings.minValue));
-				var labelX = Math.round((markerPercentage * 0.95 * elementWidth) - (markerSettings['label'].length * 3));
-				var marker = document.createElementNS(namespace, "polygon");
+				if(markerSettings.value != null){
+					//Create markers
+					//Identify center line
+					var markerPercentage = ((markerSettings['value']-settings.minValue) / (settings.maxValue - settings.minValue));
+					//Ensure marker percentage is within 0 - 100
+					if(markerPercentage < 0){ markerPercentage = 0; }
+					if(markerPercentage > 1){ markerPercentage = 1; }
+					//Build label and marker objects
+					var labelX = Math.round((markerPercentage * 0.9 * elementWidth)+(0.05 * elementWidth) - (markerSettings['label'].length * 3));
+					//Ensure label doesn't go off screen
+					if(labelX < 0){ markerPercentage = 0; }
+					if(labelX + markerSettings['label'].length * 4 > elementWidth){ markerPercentage = elementWidth - (markerSettings['label'].length * 4); }
+					
+					var marker = document.createElementNS(namespace, "polygon");
 
-				if(markerSettings['position'] == 'top'){
-					var points = ''.concat(
-						(Math.round(markerPercentage * 0.95 * elementWidth)-10),',',(Math.round((elementHeight-settings.barHeight) / 2)-10),
-						' ',(Math.round(markerPercentage * 0.95 * elementWidth)),',',(Math.round((elementHeight-settings.barHeight) / 2)+5),
-						' ',(Math.round(markerPercentage * 0.95 * elementWidth)+10),',',(Math.round((elementHeight-settings.barHeight) / 2)-10)
-					);
+					if(markerSettings['position'] == 'top'){
+						var points = ''.concat(
+							(Math.round(markerPercentage * 0.9 * elementWidth)-10+(0.05 * elementWidth)),',',(Math.round((elementHeight-settings.barHeight) / 2)-10),
+							' ',(Math.round(markerPercentage * 0.9 * elementWidth)+(0.05 * elementWidth)),',',(Math.round((elementHeight-settings.barHeight) / 2)+5),
+							' ',(Math.round(markerPercentage * 0.9 * elementWidth)+10+(0.05 * elementWidth)),',',(Math.round((elementHeight-settings.barHeight) / 2)-10)
+						);
 
-					var labelY = (Math.round((elementHeight-settings.barHeight) / 2)-15);
+						var labelY = (Math.round((elementHeight-settings.barHeight) / 2)-15);
 
-				}else{
-					var points = ''.concat(
-						(Math.round(markerPercentage * 0.95 * elementWidth)-10),',',(Math.round((elementHeight-settings.barHeight) / 2)+settings.barHeight+10),
-						' ',(Math.round(markerPercentage * 0.95 * elementWidth)),',',(Math.round((elementHeight-settings.barHeight) / 2)+settings.barHeight-5),
-						' ',(Math.round(markerPercentage * 0.95 * elementWidth)+10),',',(Math.round((elementHeight-settings.barHeight) / 2)+settings.barHeight+10)
-					);
+					}else{
+						var points = ''.concat(
+							(Math.round(markerPercentage * 0.9 * elementWidth)-10+(0.05 * elementWidth)),',',(Math.round((elementHeight-settings.barHeight) / 2)+settings.barHeight+10),
+							' ',(Math.round(markerPercentage * 0.9 * elementWidth)+(0.05 * elementWidth)),',',(Math.round((elementHeight-settings.barHeight) / 2)+settings.barHeight-5),
+							' ',(Math.round(markerPercentage * 0.9 * elementWidth)+10+(0.05 * elementWidth)),',',(Math.round((elementHeight-settings.barHeight) / 2)+settings.barHeight+10)
+						);
 
-					var labelY = (Math.round((elementHeight-settings.barHeight) / 2)+settings.barHeight+25);
-				}
+						var labelY = (Math.round((elementHeight-settings.barHeight) / 2)+settings.barHeight+25);
+					}
 
-				$(marker).attr({
-					points: points
-				}).css({
-					'fill': markerSettings['color']
-				});
-
-				//Add marker to SVG
-				$(svg).append(marker);
-
-				//Display label if passed
-				if(markerSettings['label'].length > 0){
-					var label = document.createElementNS(namespace, "text");
-
-					$(label).attr({
-						x: labelX,
-						y: labelY,
+					$(marker).attr({
+						points: points
 					}).css({
-						'fill': markerSettings['textColor'],
+						'fill': markerSettings['color']
 					});
-					label.textContent = markerSettings['label'];
 
-					//Add label
-					$(svg).append(label);
+					//Add title to marker
+					var markerTitle = document.createElementNS(namespace, "title");
+					markerTitle.textContent = markerSettings.value;
+
+					$(marker).append(markerTitle);
+
+					//Add marker to SVG
+					$(svg).append(marker);
+
+					//Display label if passed
+					if(markerSettings['label'].length > 0){
+						var label = document.createElementNS(namespace, "text");
+
+						$(label).attr({
+							x: labelX,
+							y: labelY,
+						}).css({
+							'fill': markerSettings['textColor'],
+						});
+						label.textContent = markerSettings['label'];
+
+						//Add label
+						$(svg).append(label);
+					}				
 				}		
 			});
 			
